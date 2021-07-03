@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">TestFireBase</string>
     <string name="server_client_id">"120734524059-rh8lqcu7pttkflkno0feit0num873jk7.apps.googleusercontent.com"</string>
+    <string name="succesful_registration">Successful Registration to db</string>
+    <string name="unsuccesful_registration">Unsuccessful Registration to db</string>
+    <string name="Access_denied">Access denied for </string>
 </resources>

@@ -73,6 +73,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
+///// Sign in process///////////////
     private void signIn() {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
@@ -135,8 +137,7 @@ public class MainActivity extends AppCompatActivity {
 
         }
     }
-
-
+    ///// Sign out process///////////////
     private void signOut() {
         mGoogleSignInClient.signOut().addOnCompleteListener(this, task -> updateAfterLogOut());
     }
@@ -148,7 +149,7 @@ public class MainActivity extends AppCompatActivity {
         statusText.setTextSize(40);
         logOutButton.setVisibility(View.INVISIBLE);
     }
-
+    ///// validate for registration and authorization ///////////////
     private void regInFireStore(FirebaseUser currentUser){
         if (currentUser !=null ) {
             DocumentReference docRef = db.collection("stakeholders").document(currentUser.getUid());
@@ -163,8 +164,8 @@ public class MainActivity extends AppCompatActivity {
 
             db.collection("stakeholders").document(currentUser.getUid())
                     .set(stakeholder)
-                    .addOnSuccessListener(success -> Toast.makeText(this, "Successful Registration to db", Toast.LENGTH_SHORT).show())
-                    .addOnFailureListener(noSuccess -> Toast.makeText(this, "Unsuccessful Registration to db", Toast.LENGTH_SHORT).show());
+                    .addOnSuccessListener(success -> Toast.makeText(this, getText(R.string.succesful_registration), Toast.LENGTH_SHORT).show())
+                    .addOnFailureListener(noSuccess -> Toast.makeText(this, getText(R.string.unsuccesful_registration), Toast.LENGTH_SHORT).show());
         }
     }
 
@@ -181,17 +182,17 @@ public class MainActivity extends AppCompatActivity {
                                             }
                                             else{
                                                 signOut();
-                                                Toast.makeText(currentContext, "Access denied", Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(currentContext,   getText(R.string.Access_denied)+" "+currentUser.getEmail(), Toast.LENGTH_LONG).show();
                                             }
                             }
                             else {
                                 regInFireStore(currentUser);
-                                signOut();
+                                //signOut();
                             }
                 }
                 else {
                     Log.d(TAG, "get failed with ", task.getException());
-                    signOut();
+                    //signOut();
                 }
             }
         });
