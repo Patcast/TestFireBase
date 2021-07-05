@@ -1,4 +1,4 @@
-package com.example.testfirebase;
+package com.example.testfirebase.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +11,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.testfirebase.R;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -30,7 +32,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MainActivity extends AppCompatActivity {
+public class LogIn extends AppCompatActivity {
     private Button logOutButton;
     private SignInButton signInButton;
     private TextView statusText;
@@ -45,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         mAuth = FirebaseAuth.getInstance();
 
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_log_in);
         GoogleSignInOptions gso = new GoogleSignInOptions.
                                     Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).
                                     requestIdToken(getString(R.string.server_client_id)).
@@ -58,9 +60,7 @@ public class MainActivity extends AppCompatActivity {
         signInButton= findViewById(R.id.btn_sign_in_google);
         signInButton.setSize(SignInButton.SIZE_WIDE);
         signInButton.setOnClickListener(v->signIn());
-        logOutButton = findViewById(R.id.btn_sign_out);
-        logOutButton.setOnClickListener(v->signOut());
-        logOutButton.setVisibility(View.INVISIBLE);
+
     }
     @Override
     protected void onStart() {
@@ -115,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            checkIfUserRegistered(user,MainActivity.this);
+                            checkIfUserRegistered(user, LogIn.this);
 
                         } else {
                             // If sign in fails, display a message to the user.
@@ -128,13 +128,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void updateAfterSignedIn(FirebaseUser account){
         if (account !=null ){
-            signInButton.setVisibility(View.INVISIBLE);
-            StringBuilder logInMessage = new StringBuilder("You are logged in with : ");
-            logInMessage.append(account.getDisplayName());
-            statusText.setText(logInMessage);
-            statusText.setTextSize(10);
-            logOutButton.setVisibility(View.VISIBLE);
-
+            Intent i = new Intent(this, MainActivity.class);
+            startActivity(i);
+            finish();
         }
     }
     ///// Sign out process///////////////

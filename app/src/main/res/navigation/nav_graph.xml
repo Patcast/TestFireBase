@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/displayAllInformation">
+
+    <fragment
+        android:id="@+id/displayAllInformation"
+        android:name="com.example.testfirebase.fragments.DisplayAllInformation"
+        android:label="fragment_display_all_information"
+        tools:layout="@layout/fragment_display_all_information" >
+        <action
+            android:id="@+id/action_displayAllInformation_to_writeInformation"
+            app:destination="@id/writeInformation" />
+    </fragment>
+    <fragment
+        android:id="@+id/writeInformation"
+        android:name="com.example.testfirebase.fragments.WriteInformation"
+        android:label="fragment_write_information"
+        tools:layout="@layout/fragment_write_information" >
+        <action
+            android:id="@+id/action_writeInformation_to_displayAllInformation"
+            app:destination="@id/displayAllInformation" />
+    </fragment>
+</navigation>
