@@ -10,8 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TestFireBase">
 
-        <activity android:name=".activities.MainActivity" />
-        <activity android:name=".activities.LogIn">
+
+        <activity android:name=".activities.MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

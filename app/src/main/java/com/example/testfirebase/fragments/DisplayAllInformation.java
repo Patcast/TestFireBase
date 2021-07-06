@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.testfirebase.R;
+import com.example.testfirebase.activities.MainActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 
@@ -24,6 +25,8 @@ public class DisplayAllInformation extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        MainActivity activity = (MainActivity) getActivity();
+        activity.hideLogOut(false);
 
     }
 

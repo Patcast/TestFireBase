@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/displayAllInformation">
+    app:startDestination="@id/logIn">
 
     <fragment
         android:id="@+id/displayAllInformation"
@@ -21,6 +21,15 @@
         tools:layout="@layout/fragment_write_information" >
         <action
             android:id="@+id/action_writeInformation_to_displayAllInformation"
+            app:destination="@id/displayAllInformation" />
+    </fragment>
+    <fragment
+        android:id="@+id/logIn"
+        android:name="com.example.testfirebase.fragments.LogIn"
+        android:label="fragment_log_in"
+        tools:layout="@layout/fragment_log_in" >
+        <action
+            android:id="@+id/action_logIn_to_displayAllInformation"
             app:destination="@id/displayAllInformation" />
     </fragment>
 </navigation>
