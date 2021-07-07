@@ -7,12 +7,20 @@
 
     <fragment
         android:id="@+id/displayAllInformation"
-        android:name="com.example.testfirebase.fragments.DisplayAllInformation"
+        android:name="com.example.testfirebase.fragments.DisplayGreeting"
         android:label="fragment_display_all_information"
-        tools:layout="@layout/fragment_display_all_information" >
+        tools:layout="@layout/fragment_display_greeting" >
         <action
             android:id="@+id/action_displayAllInformation_to_writeInformation"
             app:destination="@id/writeInformation" />
+        <action
+            android:id="@+id/action_displayAllInformation_to_displayAllGreetings"
+            app:destination="@id/displayAllGreetings" />
+        <argument
+            android:name="id"
+            app:argType="string"
+            android:defaultValue="default" />
+
     </fragment>
     <fragment
         android:id="@+id/writeInformation"
@@ -29,7 +37,16 @@
         android:label="fragment_log_in"
         tools:layout="@layout/fragment_log_in" >
         <action
-            android:id="@+id/action_logIn_to_displayAllInformation"
+            android:id="@+id/action_logIn_to_displayAllGreetings"
+            app:destination="@id/displayAllGreetings" />
+    </fragment>
+    <fragment
+        android:id="@+id/displayAllGreetings"
+        android:name="com.example.testfirebase.fragments.DisplayAllGreetings"
+        android:label="fragment_display_all_greetings"
+        tools:layout="@layout/fragment_display_all_greetings" >
+        <action
+            android:id="@+id/action_displayAllGreetings_to_displayAllInformation"
             app:destination="@id/displayAllInformation" />
     </fragment>
 </navigation>

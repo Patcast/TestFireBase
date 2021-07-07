@@ -12,13 +12,25 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.testfirebase.R;
+import com.example.testfirebase.model.Greetings;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 
 public class WriteInformation extends Fragment {
 
+    EditText editGreeting;
+    EditText editName;
+    EditText editDate;
+    NavController navController;
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -35,8 +47,34 @@ public class WriteInformation extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        NavController navController = Navigation.findNavController(view);
+
+        editGreeting = view.findViewById(R.id.editText_Greetings);
+        editName = view.findViewById(R.id.editText_name);
+        editDate = view.findViewById(R.id.editText_number);
+        navController = Navigation.findNavController(view);
         Button writeButton = view.findViewById(R.id.button_info_write);
-        writeButton.setOnClickListener(v -> navController.navigate(R.id.action_writeInformation_to_displayAllInformation));
+        writeButton.setOnClickListener(v -> onClick());
+    }
+    public void onClick(){
+        Greetings myGreeting = new Greetings(
+                editGreeting.getText().toString(),
+                editName.getText().toString(),
+                Integer.parseInt(editDate.getText().toString()) );
+        db.collection("greetings").
+                add(myGreeting).
+                addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        WriteInformationDirections.ActionWriteInformationToDisplayAllInformation action = WriteInformationDirections.actionWriteInformationToDisplayAllInformation();
+                        action.setId(documentReference.getId());
+                        navController.navigate(action);
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull  Exception e) {
+                Toast.makeText(getContext(),"Error Loading the data",Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 }

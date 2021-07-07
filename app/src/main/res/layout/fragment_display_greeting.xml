@@ -6,7 +6,7 @@
     android:id="@+id/frameLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.DisplayAllInformation">
+    tools:context=".fragments.DisplayGreeting">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -15,7 +15,7 @@
         android:id="@+id/textView_Greetings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello from DISPLAY info"
+        android:text="Hello from DISPLAY info OLD"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -28,7 +28,7 @@
         android:id="@+id/textView_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="From Patricio"
+        android:text="From Patricio OLD"
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/button_info_display"
         app:layout_constraintEnd_toEndOf="parent"
@@ -41,22 +41,34 @@
         android:id="@+id/textView_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="2021"
+        android:text="2021 OLD"
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/button_info_display"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView_name" />
+
     <Button
         android:id="@+id/button_info_display"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="208dp"
         android:text="Edit info"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
         app:layout_constraintVertical_bias="0.821" />
+
+    <Button
+        android:id="@+id/button_allGreetings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="All Greetings"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_info_display" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

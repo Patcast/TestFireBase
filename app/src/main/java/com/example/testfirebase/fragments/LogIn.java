@@ -140,7 +140,7 @@ public class LogIn extends Fragment {
 
     private void updateAfterSignedIn(FirebaseUser account){
         if (account !=null ){
-            navController.navigate(R.id.action_logIn_to_displayAllInformation);
+            navController.navigate(R.id.action_logIn_to_displayAllGreetings);
         }
     }
     ///// Sign out process///////////////
